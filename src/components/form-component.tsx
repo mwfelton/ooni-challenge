@@ -17,41 +17,27 @@ export class OrderForm extends React.Component {
                 pizzaPrice: 0,
                 side: '',
                 sidePrice: 0,
-                side2: '',
-                sidePrice2: 0
             }
     }
 
     dataState = { data: DATA }
     checkoutState = { clicked: false}
 
-    orderObject = {
-        order: [
-            {
-                size: '',
-                pizzaPrice: 0,
-                side: '',
-                sidePrice: 0,
-            }
-        ]
-    }
+    // addToOrder(element: MouseEvent<HTMLButtonElement>){
+    //     const button = element.currentTarget;
+    //     button.classList.toggle('selected')
 
-    addToOrder(element: MouseEvent<HTMLButtonElement>){
-        const button = element.currentTarget;
-        button.classList.toggle('selected')
-
-        const orderItem: any = {
-            pizzaOrder: {pizzaPrice: button.value, size: button.name}
-        }
+    //     const orderItem: any = {
+    //         pizzaOrder: {pizzaPrice: button.value, size: button.name}
+    //     }
         
-        this.orderObject.order.push(orderItem)
+    //     this.orderObject.order.push(orderItem)
     
-        console.log(this.orderObject.order)
-        this.forceUpdate()
+    //     console.log(this.orderObject.order)
+    //     this.forceUpdate()
 
-    }
+    // }
     
-
     addPizza(element: MouseEvent<HTMLButtonElement>) {
 
         const button = element.currentTarget;
@@ -110,7 +96,6 @@ export class OrderForm extends React.Component {
     render() {
 
         const { data } = this.dataState;
-        const { order } = this.orderObject;
 
         return (
             <>
@@ -118,7 +103,7 @@ export class OrderForm extends React.Component {
                 {data.map((element) => {
                    if (element.type == 'pizza'){
                        return (
-                        <Button id={element.name} data-getter='product-button' name={element.name} value={element.price} onClick = {(e) => this.addToOrder(e)} variant="light">{element.name}</Button>
+                        <Button id={element.name} data-getter='product-button' name={element.name} value={element.price} onClick = {(e) => this.addPizza(e)} variant="light">{element.name}</Button>
                        )
                     }
                 })}
@@ -132,12 +117,7 @@ export class OrderForm extends React.Component {
                     }
                 })}
 
-                {order.map(item => {
-                    console.log(item.size)
-                    return <h1>{item.size}</h1>
-                })}
-
-                <Checkout orderData={this.cartState.order} orderArray={this.orderObject.order} />
+                <Checkout orderData={this.cartState.order}/>
 
                 <div>
                 <Button id="checkout-button" onClick = {(e) => this.checkout(e)} variant="secondary">CHECKOUT</Button>{' '}

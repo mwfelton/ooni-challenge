@@ -2,7 +2,6 @@ import React from 'react';
 
 type Props = {
     orderData: any;
-    orderArray: any;
   };
 
 export default class Checkout extends React.Component<Props> {
@@ -39,14 +38,7 @@ export default class Checkout extends React.Component<Props> {
        
 
         return (
-            <>
-              <h1>YOUR ARRAY ORDER</h1>
-
-              {this.props.orderArray.forEach((pizza: any) => {
-                  console.log(pizza.size)
-                  return <h2>Pizza : {pizza.size} - {pizza.pizzaPrice}</h2>
-              })}
-        
+            <>    
               <h1>Your Order</h1>
               <h2>Pizza : {this.props.orderData.size}</h2>
               <h2>Side : {this.props.orderData.side}</h2>
